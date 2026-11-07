@@ -11,8 +11,13 @@ import {
   CheckCircle2,
 } from 'lucide-react'
 import { useScrollAnimation } from '../../hooks/useScrollAnimation'
+import { AppPage } from '../hero/HeroNavigation'
 
-export const ContactFormSection: React.FC = () => {
+interface ContactFormSectionProps {
+  onNavigate?: (page: AppPage) => void
+}
+
+export const ContactFormSection: React.FC<ContactFormSectionProps> = ({ onNavigate }) => {
   const { ref, isVisible } = useScrollAnimation()
   const [formData, setFormData] = useState({
     name: '',
@@ -242,9 +247,19 @@ export const ContactFormSection: React.FC = () => {
                       onChange={(e) => setFormData({ ...formData, privacyAccepted: e.target.checked })}
                       className="mt-1 w-4 h-4 rounded border-slate-300 text-[#D81E26] focus:ring-[#D81E26] cursor-pointer"
                     />
-                    <label htmlFor="privacyCheckbox" className="text-xs text-slate-600 leading-relaxed cursor-pointer select-none">
+                    <label htmlFor="privacyCheckbox" className="text-xs text-slate-600 leading-relaxed select-none">
                       Ich habe die Hinweise zum{' '}
-                      <span className="text-[#D81E26] underline font-medium">Datenschutz</span>{' '}
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault()
+                          e.stopPropagation()
+                          onNavigate?.('datenschutz')
+                        }}
+                        className="text-[#D81E26] underline font-medium hover:text-[#BE161D] transition-colors cursor-pointer inline"
+                      >
+                        Datenschutz
+                      </button>{' '}
                       gelesen und stimme der Verarbeitung meiner Daten zur Bearbeitung meiner Anfrage zu.{' '}
                       <span className="text-[#D81E26]">*</span>
                     </label>

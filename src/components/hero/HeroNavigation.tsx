@@ -1,7 +1,14 @@
 import React, { useState } from 'react'
 import { ArrowRight, Menu, X } from 'lucide-react'
 
-export type AppPage = 'home' | 'about' | 'services' | 'contact'
+export type AppPage =
+  | 'home'
+  | 'about'
+  | 'services'
+  | 'contact'
+  | 'impressum'
+  | 'datenschutz'
+  | 'agb'
 
 interface HeroNavigationProps {
   scrollProgress?: number
@@ -46,7 +53,16 @@ export const HeroNavigation: React.FC<HeroNavigationProps> = ({
   const isAbout = currentPage === 'about'
   const isServices = currentPage === 'services'
   const isContact = currentPage === 'contact'
-  const isDarkBar = isAbout || isServices || isContact
+  const isImpressum = currentPage === 'impressum'
+  const isDatenschutz = currentPage === 'datenschutz'
+  const isAgb = currentPage === 'agb'
+  const isDarkBar =
+    isAbout ||
+    isServices ||
+    isContact ||
+    isImpressum ||
+    isDatenschutz ||
+    isAgb
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 pointer-events-auto">

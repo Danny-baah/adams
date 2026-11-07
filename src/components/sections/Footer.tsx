@@ -1,7 +1,6 @@
 import React from 'react'
 import { Phone, Mail, MapPin, Laptop, ExternalLink } from 'lucide-react'
-
-type AppPage = 'home' | 'about' | 'services' | 'contact'
+import { AppPage } from '../hero/HeroNavigation'
 
 interface FooterProps {
   onNavigate?: (page: AppPage) => void
@@ -124,8 +123,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 <div className="w-8 h-8 rounded-lg bg-[#142A52] border border-white/10 flex items-center justify-center flex-shrink-0 text-white">
                   <Phone className="w-4 h-4 text-white" />
                 </div>
-                <a href="tel:+49214508185" className="hover:text-white font-medium transition-colors">
-                  +49 214 50 81 85
+                <a href="tel:+492122309840" className="hover:text-white font-medium transition-colors">
+                  +49 (212) 230 98 40
                 </a>
               </li>
 
@@ -133,8 +132,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 <div className="w-8 h-8 rounded-lg bg-[#142A52] border border-white/10 flex items-center justify-center flex-shrink-0 text-white">
                   <Mail className="w-4 h-4 text-white" />
                 </div>
-                <a href="mailto:info@adamas-elektrotechnik.de" className="hover:text-white font-medium transition-colors">
-                  info@adamas-elektrotechnik.de
+                <a href="mailto:info@elektro-adamas.de" className="hover:text-white font-medium transition-colors">
+                  info@elektro-adamas.de
                 </a>
               </li>
 
@@ -143,7 +142,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   <MapPin className="w-4 h-4 text-white" />
                 </div>
                 <span className="font-medium text-slate-300 leading-snug">
-                  Friedrich-Ebert-Straße 134<br />51373 Leverkusen
+                  Maybachstr. 37<br />51381 Leverkusen
                 </span>
               </li>
             </ul>
@@ -159,11 +158,29 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-center">
             <span>&copy; {new Date().getFullYear()} ADAMAS Elektrotechnik. Alle Rechte vorbehalten.</span>
             <span className="text-white/30 hidden sm:inline">|</span>
-            <a href="#" className="hover:text-white transition-colors">Impressum</a>
+            <a
+              href="#/impressum"
+              onClick={(e) => handleNav(e, 'impressum')}
+              className="hover:text-white transition-colors cursor-pointer"
+            >
+              Impressum
+            </a>
             <span className="text-white/30 hidden sm:inline">|</span>
-            <a href="#" className="hover:text-white transition-colors">Datenschutz</a>
+            <a
+              href="#/datenschutz"
+              onClick={(e) => handleNav(e, 'datenschutz')}
+              className="hover:text-white transition-colors cursor-pointer"
+            >
+              Datenschutz
+            </a>
             <span className="text-white/30 hidden sm:inline">|</span>
-            <a href="#" className="hover:text-white transition-colors">ABG</a>
+            <a
+              href="#/agb"
+              onClick={(e) => handleNav(e, 'agb')}
+              className="hover:text-white transition-colors cursor-pointer"
+            >
+              AGB
+            </a>
           </div>
 
           {/* Webdesign by EmanCopys */}

@@ -23,11 +23,44 @@ import { ContactHero } from './components/contact/ContactHero'
 import { ContactFormSection } from './components/contact/ContactFormSection'
 import { ContactMapSection } from './components/contact/ContactMapSection'
 
+// Legal & Compliance Pages
+import { LegalPage } from './components/legal/LegalPage'
+
 const getInitialPage = (): AppPage => {
   if (typeof window === 'undefined') return 'home'
   const hash = window.location.hash.toLowerCase()
   const search = window.location.search.toLowerCase()
   const path = window.location.pathname.toLowerCase()
+
+  if (
+    hash.includes('impressum') ||
+    search.includes('page=impressum') ||
+    path.includes('impressum')
+  ) {
+    return 'impressum'
+  }
+
+  if (
+    hash.includes('datenschutz') ||
+    hash.includes('privacy') ||
+    search.includes('page=datenschutz') ||
+    search.includes('page=privacy') ||
+    path.includes('datenschutz') ||
+    path.includes('privacy')
+  ) {
+    return 'datenschutz'
+  }
+
+  if (
+    hash.includes('agb') ||
+    hash.includes('terms') ||
+    search.includes('page=agb') ||
+    search.includes('page=terms') ||
+    path.includes('agb') ||
+    path.includes('terms')
+  ) {
+    return 'agb'
+  }
 
   if (
     hash.includes('kontakt') ||
@@ -74,6 +107,25 @@ export const App: React.FC = () => {
       const search = window.location.search.toLowerCase()
 
       if (
+        hash.includes('impressum') ||
+        search.includes('page=impressum')
+      ) {
+        setCurrentPage('impressum')
+      } else if (
+        hash.includes('datenschutz') ||
+        hash.includes('privacy') ||
+        search.includes('page=datenschutz') ||
+        search.includes('page=privacy')
+      ) {
+        setCurrentPage('datenschutz')
+      } else if (
+        hash.includes('agb') ||
+        hash.includes('terms') ||
+        search.includes('page=agb') ||
+        search.includes('page=terms')
+      ) {
+        setCurrentPage('agb')
+      } else if (
         hash.includes('kontakt') ||
         hash.includes('contact') ||
         search.includes('page=contact') ||
@@ -116,6 +168,12 @@ export const App: React.FC = () => {
       window.location.hash = '/leistungen'
     } else if (page === 'about') {
       window.location.hash = '/ueber-uns'
+    } else if (page === 'impressum') {
+      window.location.hash = '/impressum'
+    } else if (page === 'datenschutz') {
+      window.location.hash = '/datenschutz'
+    } else if (page === 'agb') {
+      window.location.hash = '/agb'
     } else {
       window.location.hash = '/'
     }
@@ -214,7 +272,7 @@ export const App: React.FC = () => {
           <ContactHero />
 
           {/* 2. Interactive Contact Form & Contact Information Card */}
-          <ContactFormSection />
+          <ContactFormSection onNavigate={handleNavigate} />
 
           {/* 3. Full-Width Leverkusen Architectural Map Section */}
           <ContactMapSection />
@@ -222,6 +280,16 @@ export const App: React.FC = () => {
           {/* 4. Official Master Enterprise Footer (#041633) */}
           <Footer onNavigate={handleNavigate} />
         </>
+      )}
+
+      {/* Legal Pages: Impressum, Datenschutz, AGB */}
+      {(currentPage === 'impressum' ||
+        currentPage === 'datenschutz' ||
+        currentPage === 'agb') && (
+        <LegalPage
+          activeDoc={currentPage}
+          onNavigate={handleNavigate}
+        />
       )}
     </main>
   )
