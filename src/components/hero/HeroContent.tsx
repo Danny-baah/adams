@@ -14,34 +14,29 @@ export const HeroContent: React.FC<HeroContentProps> = ({
   onJumpToChapter,
   onNavigate,
 }) => {
-  const isFinalState = progress >= 0.88
+  const isFinalState = progress >= 0.82
 
   // Calculate active chapter index and progress inside that chapter
+  // Exactly 3 story texts (0: Intro, 1: Wallbox, 2: Security/CCTV) before the Final Hero
   let activeChapterIndex = 0
   let chapterProgress = 0
 
-  if (progress <= 0.12) {
+  if (progress <= 0.25) {
     activeChapterIndex = 0
-    chapterProgress = progress / 0.12
-  } else if (progress <= 0.28) {
+    chapterProgress = progress / 0.25
+  } else if (progress <= 0.54) {
     activeChapterIndex = 1
-    chapterProgress = (progress - 0.13) / (0.28 - 0.13)
-  } else if (progress <= 0.41) {
+    chapterProgress = (progress - 0.25) / (0.54 - 0.25)
+  } else if (progress < 0.82) {
     activeChapterIndex = 2
-    chapterProgress = (progress - 0.29) / (0.41 - 0.29)
-  } else if (progress <= 0.68) {
-    activeChapterIndex = 3
-    chapterProgress = (progress - 0.42) / (0.68 - 0.42)
-  } else if (progress < 0.88) {
-    activeChapterIndex = 4
-    chapterProgress = (progress - 0.69) / (0.88 - 0.69)
+    chapterProgress = (progress - 0.54) / (0.82 - 0.54)
   } else {
     activeChapterIndex = -1
     chapterProgress = 1
   }
 
   // Smooth opacity curve for final hero reveal
-  const finalOpacity = Math.max(0, Math.min(1, (progress - 0.88) / 0.08))
+  const finalOpacity = Math.max(0, Math.min(1, (progress - 0.82) / 0.08))
   const finalTranslateY = (1 - finalOpacity) * 20
 
   return (
@@ -135,7 +130,7 @@ export const HeroContent: React.FC<HeroContentProps> = ({
           {/* Final state indicator */}
           <button
             type="button"
-            onClick={() => onJumpToChapter && onJumpToChapter(5)}
+            onClick={() => onJumpToChapter && onJumpToChapter(3)}
             className="group relative flex items-center gap-1.5 px-2 py-1 transition-all cursor-pointer"
             title="ADAMAS"
           >

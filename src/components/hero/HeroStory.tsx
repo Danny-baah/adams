@@ -26,18 +26,6 @@ export const STORY_CHAPTERS: StoryChapter[] = [
     number: '02 / SICHERHEIT',
     headline: 'Sicherheit beginnt mit Vertrauen.',
     supporting: 'Moderne Sicherheits- und Überwachungstechnik für Ihr Zuhause.'
-  },
-  {
-    id: 'lighting',
-    number: '03 / BELEUCHTUNG',
-    headline: 'Licht schafft Atmosphäre.',
-    supporting: 'Durchdachte Elektroinstallationen und individuelle Lichtkonzepte.'
-  },
-  {
-    id: 'smarthome',
-    number: '04 / SMART HOME',
-    headline: 'Ihr Zuhause. Intelligent vernetzt.',
-    supporting: 'Smarte Lösungen für mehr Komfort und Kontrolle.'
   }
 ]
 
@@ -64,19 +52,19 @@ export const HeroStory: React.FC<HeroStoryProps> = ({
 
   if (activeChapterIndex === 0) {
     // Opening is immediately visible at top, then fades out smoothly as user scrolls
-    if (chapterProgress > 0.65) {
-      const t = (chapterProgress - 0.65) / 0.35
+    if (chapterProgress > 0.70) {
+      const t = (chapterProgress - 0.70) / 0.30
       opacity = 1 - t
       translateY = -t * 16
     }
   } else {
-    // Subsequent chapters fade in, stay visible, then fade out
-    if (chapterProgress < 0.25) {
-      const t = chapterProgress / 0.25
+    // Subsequent chapters fade in smoothly, stay visible for ~70% of chapter, then fade out
+    if (chapterProgress < 0.15) {
+      const t = chapterProgress / 0.15
       opacity = t
       translateY = (1 - t) * 16
-    } else if (chapterProgress > 0.75) {
-      const t = (chapterProgress - 0.75) / 0.25
+    } else if (chapterProgress > 0.85) {
+      const t = (chapterProgress - 0.85) / 0.15
       opacity = 1 - t
       translateY = -t * 16
     }

@@ -10,10 +10,9 @@ const VIDEO_HEIGHT = 1080
 
 // Focal point X (0.0 to 1.0) in video source for mobile portrait framing
 function getFocalPointX(progress: number): number {
-  if (progress < 0.12) return 0.50 // Intro exterior center
-  if (progress < 0.28) return 0.44 // Wallbox center
-  if (progress < 0.41) return 0.52 // CCTV camera
-  if (progress < 0.68) return 0.42 // Interior lighting chandelier
+  if (progress < 0.25) return 0.50 // Intro exterior center
+  if (progress < 0.54) return 0.44 // Wallbox center
+  if (progress < 0.82) return 0.52 // CCTV camera
   return 0.65 // Smart home wall panel & final reveal
 }
 
@@ -235,12 +234,10 @@ export function useHeroAnimation() {
 
     // Exact progress targets matching video chapters:
     // 0: Intro (0.00)
-    // 1: Wallbox (0.20)
-    // 2: Security CCTV (0.35)
-    // 3: Lighting (0.55)
-    // 4: Smart Home (0.78)
-    // 5: Final Reveal (0.95)
-    const targets = [0.00, 0.20, 0.35, 0.55, 0.78, 0.95]
+    // 1: Wallbox (0.35)
+    // 2: Security CCTV (0.65)
+    // 3: Final Reveal (0.92)
+    const targets = [0.00, 0.35, 0.65, 0.92]
     const targetProgress = targets[Math.min(chapterIdx, targets.length - 1)]
 
     const scrollTotal = container.scrollHeight - window.innerHeight
