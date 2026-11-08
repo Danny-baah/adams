@@ -206,7 +206,7 @@ export const App: React.FC = () => {
           <PartnersMarquee />
 
           {/* 7. Jetzt Kontakt Aufnehmen Banner (Cinematic Dark #070B12) */}
-          <ContactCtaSection />
+          <ContactCtaSection onNavigate={handleNavigate} />
 
           {/* 8. Official Master Enterprise Footer (#041633) */}
           <Footer onNavigate={handleNavigate} />
@@ -231,7 +231,7 @@ export const App: React.FC = () => {
           <PartnersMarquee />
 
           {/* 5. Final Contact CTA Section (Cinematic Dark #070B12) */}
-          <ContactCtaSection />
+          <ContactCtaSection onNavigate={handleNavigate} />
 
           {/* 6. Official Master Enterprise Footer (#041633) */}
           <Footer onNavigate={handleNavigate} />
@@ -244,10 +244,10 @@ export const App: React.FC = () => {
           <HeroNavigation currentPage="services" onNavigate={handleNavigate} />
 
           {/* 1. Services Hero Section (Dark Navy #011429) */}
-          <ServicesHero />
+          <ServicesHero onNavigate={handleNavigate} />
 
           {/* 2. All 6 Detailed Services with Alternating Layout & Backgrounds */}
-          <ServicesList />
+          <ServicesList onNavigate={handleNavigate} />
 
           {/* 3. Our 4-Step Process & Blueprint from About Section ("Unser Anspruch") */}
           <AboutProcess />
@@ -256,7 +256,7 @@ export const App: React.FC = () => {
           <TestimonialsSection />
 
           {/* 5. Final Contact CTA Section (Cinematic Dark #070B12) */}
-          <ContactCtaSection />
+          <ContactCtaSection onNavigate={handleNavigate} />
 
           {/* 6. Official Master Enterprise Footer (#041633) */}
           <Footer onNavigate={handleNavigate} />

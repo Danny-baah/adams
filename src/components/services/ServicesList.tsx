@@ -341,7 +341,13 @@ const ServiceSectionItem: React.FC<ServiceItemProps> = ({ service, scrollToConta
   )
 }
 
-export const ServicesList: React.FC = () => {
+import { AppPage } from '../hero/HeroNavigation'
+
+interface ServicesListProps {
+  onNavigate?: (page: AppPage) => void
+}
+
+export const ServicesList: React.FC<ServicesListProps> = ({ onNavigate }) => {
   React.useEffect(() => {
     const handleScrollToHash = () => {
       const hash = window.location.hash
@@ -359,8 +365,12 @@ export const ServicesList: React.FC = () => {
 
   const scrollToContact = (e: React.MouseEvent) => {
     e.preventDefault()
-    const el = document.getElementById('kontakt')
-    el?.scrollIntoView({ behavior: 'smooth' })
+    if (onNavigate) {
+      onNavigate('contact')
+    } else {
+      const el = document.getElementById('kontakt')
+      el?.scrollIntoView({ behavior: 'smooth' })
+    }
   }
 
   return (

@@ -1,8 +1,13 @@
 import React from 'react'
 import { ArrowRight } from 'lucide-react'
 import { useScrollAnimation } from '../../hooks/useScrollAnimation'
+import { AppPage } from '../hero/HeroNavigation'
 
-export const ServicesHero: React.FC = () => {
+interface ServicesHeroProps {
+  onNavigate?: (page: AppPage) => void
+}
+
+export const ServicesHero: React.FC<ServicesHeroProps> = ({ onNavigate }) => {
   const { ref, isVisible } = useScrollAnimation()
   const scrollToServices = (e: React.MouseEvent) => {
     e.preventDefault()
@@ -10,10 +15,14 @@ export const ServicesHero: React.FC = () => {
     el?.scrollIntoView({ behavior: 'smooth' })
   }
 
-  const scrollToContact = (e: React.MouseEvent) => {
+  const handleContactClick = (e: React.MouseEvent) => {
     e.preventDefault()
-    const el = document.getElementById('kontakt')
-    el?.scrollIntoView({ behavior: 'smooth' })
+    if (onNavigate) {
+      onNavigate('contact')
+    } else {
+      const el = document.getElementById('kontakt')
+      el?.scrollIntoView({ behavior: 'smooth' })
+    }
   }
 
   return (
@@ -69,7 +78,7 @@ export const ServicesHero: React.FC = () => {
 
             <a
               href="#kontakt"
-              onClick={scrollToContact}
+              onClick={handleContactClick}
               className={`anim-slide-right ${isVisible ? 'is-visible' : ''} delay-150 inline-flex items-center justify-center px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/15 border border-white/25 text-white font-medium text-sm sm:text-base tracking-wide backdrop-blur-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer`}
             >
               Projekt besprechen
