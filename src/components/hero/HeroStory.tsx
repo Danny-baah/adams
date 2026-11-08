@@ -113,13 +113,13 @@ export const HeroStory: React.FC<HeroStoryProps> = ({
       </div>
 
       {/* Headline */}
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight leading-[1.15] mb-4 drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.15] mb-3 sm:mb-4 drop-shadow-[0_2px_14px_rgba(0,0,0,0.9)]">
         {current.headline}
       </h2>
 
       {/* Supporting Text */}
       {current.supporting && (
-        <p className="text-base sm:text-lg md:text-xl text-slate-200/90 font-light leading-relaxed max-w-lg drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
+        <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-200/90 font-light leading-relaxed max-w-lg drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
           {current.supporting}
         </p>
       )}

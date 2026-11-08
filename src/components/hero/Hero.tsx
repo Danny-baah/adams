@@ -19,6 +19,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
     firstFrameLoaded,
     useVideoFallback,
     jumpToChapter,
+    isMobile,
   } = useHeroAnimation()
 
   const loadPercent = Math.min(100, Math.round(((loadedCount + 1) / totalFrames) * 100))
@@ -27,13 +28,13 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
     <div
       ref={containerRef}
       className="relative w-full bg-[#070B12]"
-      // 380vh scroll track on desktop, 300vh on mobile
-      style={{ height: '380vh' }}
+      // 380vh scroll track on desktop, 280vh on mobile
+      style={{ height: isMobile ? '280vh' : '380vh' }}
     >
-      {/* Pinned Visual Stage - 100svh / 100vh */}
+      {/* Pinned Visual Stage - 100svh / 100vh managed cleanly by GSAP ScrollTrigger */}
       <div
         ref={pinStageRef}
-        className="w-full h-screen min-h-[100svh] sticky top-0 overflow-hidden select-none"
+        className="w-full h-screen min-h-[100svh] overflow-hidden select-none"
       >
         {/* Background Canvas for Frame-by-Frame Playback */}
         <canvas
@@ -56,7 +57,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         {/* Fallback Initial Image until canvas first paints (prevents blank screen) */}
         {!firstFrameLoaded && (
           <img
-            src="/frames/f_0000.webp"
+            src={isMobile ? '/frames_mobile/f_0000.webp' : '/frames/f_0000.webp'}
             alt="ADAMAS Elektrotechnik"
             className="absolute inset-0 w-full h-full object-cover pointer-events-none"
           />

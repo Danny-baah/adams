@@ -44,15 +44,15 @@ export const HeroContent: React.FC<HeroContentProps> = ({
       {/* Left dark gradient scrim to ensure text legibility on desktop */}
       <div className="hidden sm:block absolute inset-y-0 left-0 w-full sm:w-3/4 md:w-3/5 lg:w-1/2 cinematic-left-gradient pointer-events-none" />
 
-      {/* Tailored mobile gradient scrim */}
-      <div className="sm:hidden absolute inset-0 bg-gradient-to-r from-[#070B12]/95 via-[#070B12]/80 to-[#070B12]/45 pointer-events-none" />
-      <div className="sm:hidden absolute inset-0 bg-gradient-to-t from-[#070B12]/85 via-transparent to-[#070B12]/60 pointer-events-none" />
+      {/* Clean cinematic mobile scrim: keeps frame artwork vivid while ensuring text legibility */}
+      <div className="sm:hidden absolute inset-0 bg-gradient-to-b from-[#070B12]/85 via-transparent to-[#070B12]/80 pointer-events-none" />
+      <div className="sm:hidden absolute inset-y-0 left-0 w-4/5 bg-gradient-to-r from-[#070B12]/85 via-[#070B12]/30 to-transparent pointer-events-none" />
 
       {/* Top navbar spacer: Guarantees content never collides with fixed navbar */}
       <div className="h-20 sm:h-24 md:h-28 flex-shrink-0" />
 
       {/* Main Story & Final State Container: Mathematically Centered Vertically */}
-      <div className="relative flex-1 max-w-7xl w-full mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-start">
+      <div className="relative flex-1 max-w-7xl w-full mx-auto px-4 sm:px-8 lg:px-12 flex items-center justify-start">
         {/* Story chapters during scroll */}
         <div
           className={`transition-opacity duration-300 ${
@@ -68,7 +68,7 @@ export const HeroContent: React.FC<HeroContentProps> = ({
 
         {/* Final Hero Composition revealed at the end: Exactly Centered Vertically */}
         <div
-          className="absolute inset-x-6 sm:inset-x-8 lg:inset-x-12 inset-y-0 flex items-center justify-start transition-all duration-300 ease-out"
+          className="absolute inset-x-4 sm:inset-x-8 lg:inset-x-12 inset-y-0 flex items-center justify-start transition-all duration-300 ease-out"
           style={{
             opacity: finalOpacity,
             transform: `translateY(${finalTranslateY}px)`,
@@ -80,7 +80,7 @@ export const HeroContent: React.FC<HeroContentProps> = ({
       </div>
 
       {/* Bottom status bar: Scroll cue & Chapter navigation */}
-      <div className="h-16 sm:h-20 flex-shrink-0 max-w-7xl w-full mx-auto px-6 sm:px-8 lg:px-12 pb-4 sm:pb-6 flex items-center justify-between pointer-events-auto">
+      <div className="h-16 sm:h-20 flex-shrink-0 max-w-7xl w-full mx-auto px-4 sm:px-8 lg:px-12 pb-4 sm:pb-6 flex items-center justify-between pointer-events-auto">
         {/* Initial Minimal Scroll Cue (fades out as soon as user starts scrolling) */}
         <div
           className="flex items-center gap-3 transition-opacity duration-300 pointer-events-none"
@@ -90,13 +90,13 @@ export const HeroContent: React.FC<HeroContentProps> = ({
             <span className="w-1 h-1.5 rounded-full bg-[#F3A81D] animate-bounce" />
           </div>
           <span className="text-[11px] tracking-[0.18em] uppercase text-slate-300/80 font-medium">
-            Scrollen zum Entdecken &darr;
+            Scrollen &darr;
           </span>
         </div>
 
-        {/* Chapter pill indicator on desktop */}
+        {/* Chapter pill indicator on desktop & mobile */}
         <div
-          className={`hidden sm:flex items-center gap-2 bg-black/40 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/10 ml-auto transition-all duration-300 ${
+          className={`flex items-center gap-1.5 sm:gap-2 bg-black/50 backdrop-blur-md px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full border border-white/10 ml-auto transition-all duration-300 ${
             progress < 0.05 ? 'opacity-0 translate-y-2 pointer-events-none' : 'opacity-100 translate-y-0 pointer-events-auto'
           }`}
         >
@@ -107,18 +107,18 @@ export const HeroContent: React.FC<HeroContentProps> = ({
                 key={ch.id}
                 type="button"
                 onClick={() => onJumpToChapter && onJumpToChapter(idx)}
-                className="group relative flex items-center gap-1.5 px-2 py-1 transition-all cursor-pointer"
+                className="group relative flex items-center gap-1 sm:gap-1.5 px-1 sm:px-2 py-0.5 sm:py-1 transition-all cursor-pointer"
                 title={ch.headline}
               >
                 <span
                   className={`block rounded-full transition-all duration-300 ${
                     isActive
-                      ? 'w-5 h-1.5 bg-[#F3A81D]'
-                      : 'w-1.5 h-1.5 bg-white/40 group-hover:bg-white/80'
+                      ? 'w-3.5 sm:w-5 h-1 sm:h-1.5 bg-[#F3A81D]'
+                      : 'w-1 sm:w-1.5 h-1 sm:h-1.5 bg-white/40 group-hover:bg-white/80'
                   }`}
                 />
                 <span
-                  className={`text-[10px] font-semibold tracking-wider transition-colors duration-200 ${
+                  className={`text-[9px] sm:text-[10px] font-semibold tracking-wider transition-colors duration-200 ${
                     isActive ? 'text-white' : 'text-slate-400 group-hover:text-slate-200'
                   }`}
                 >
@@ -131,18 +131,18 @@ export const HeroContent: React.FC<HeroContentProps> = ({
           <button
             type="button"
             onClick={() => onJumpToChapter && onJumpToChapter(3)}
-            className="group relative flex items-center gap-1.5 px-2 py-1 transition-all cursor-pointer"
+            className="group relative flex items-center gap-1 sm:gap-1.5 px-1 sm:px-2 py-0.5 sm:py-1 transition-all cursor-pointer"
             title="ADAMAS"
           >
             <span
               className={`block rounded-full transition-all duration-300 ${
                 isFinalState
-                  ? 'w-5 h-1.5 bg-[#D81E26]'
-                  : 'w-1.5 h-1.5 bg-white/40 group-hover:bg-white/80'
+                  ? 'w-3.5 sm:w-5 h-1 sm:h-1.5 bg-[#D81E26]'
+                  : 'w-1 sm:w-1.5 h-1 sm:h-1.5 bg-white/40 group-hover:bg-white/80'
               }`}
             />
             <span
-              className={`text-[10px] font-semibold tracking-wider transition-colors duration-200 ${
+              className={`text-[9px] sm:text-[10px] font-semibold tracking-wider transition-colors duration-200 ${
                 isFinalState ? 'text-white' : 'text-slate-400 group-hover:text-slate-200'
               }`}
             >
