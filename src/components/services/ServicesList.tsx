@@ -25,6 +25,7 @@ import {
   Wrench,
 } from 'lucide-react'
 import { useScrollAnimation } from '../../hooks/useScrollAnimation'
+import { AiGeneratedBadge } from '../common/AiGeneratedBadge'
 
 interface ServiceData {
   id: string
@@ -37,6 +38,7 @@ interface ServiceData {
   imageOnLeft: boolean
   bgClass: string
   customImageFrame?: boolean
+  isAiGenerated?: boolean
   checklist: {
     icon: React.ElementType
     text: string
@@ -56,6 +58,7 @@ const SERVICES_DATA: ServiceData[] = [
     imageOnLeft: true,
     bgClass: 'bg-white',
     customImageFrame: true, // uses the extracted frame directly
+    isAiGenerated: true,
     checklist: [
       {
         icon: Home,
@@ -86,6 +89,7 @@ const SERVICES_DATA: ServiceData[] = [
     imageAlt: 'ADAMAS Smart Home KNX Gebäudeautomation',
     imageOnLeft: false, // Text Left, Image Right
     bgClass: 'bg-[#F8FAFC]',
+    isAiGenerated: true,
     checklist: [
       {
         icon: SlidersHorizontal,
@@ -116,6 +120,7 @@ const SERVICES_DATA: ServiceData[] = [
     imageAlt: 'ADAMAS Videoüberwachung und Sicherheitstechnik',
     imageOnLeft: true, // Image Left, Text Right
     bgClass: 'bg-white',
+    isAiGenerated: true,
     checklist: [
       {
         icon: ShieldCheck,
@@ -146,6 +151,7 @@ const SERVICES_DATA: ServiceData[] = [
     imageAlt: 'ADAMAS Beleuchtungstechnik und Lichtkonzepte',
     imageOnLeft: false, // Text Left, Image Right
     bgClass: 'bg-[#F1F5F9]',
+    isAiGenerated: true,
     checklist: [
       {
         icon: Lightbulb,
@@ -176,6 +182,7 @@ const SERVICES_DATA: ServiceData[] = [
     imageAlt: 'ADAMAS Wallbox Installation und Ladeinfrastruktur',
     imageOnLeft: true, // Image Left, Text Right
     bgClass: 'bg-white',
+    isAiGenerated: true,
     checklist: [
       {
         icon: Zap,
@@ -252,7 +259,10 @@ const ServiceSectionItem: React.FC<ServiceItemProps> = ({ service, scrollToConta
           >
             {service.customImageFrame ? (
               /* Service 1: Uses the extracted exact composition with framing */
-              <div className="relative w-full max-w-[460px] drop-shadow-2xl">
+              <div className="relative w-full max-w-[460px] drop-shadow-2xl overflow-hidden rounded-3xl">
+                {service.isAiGenerated && (
+                  <AiGeneratedBadge position="top-3 left-3 sm:top-4 sm:left-4" />
+                )}
                 <img
                   src={service.image}
                   alt={service.imageAlt}
@@ -262,6 +272,9 @@ const ServiceSectionItem: React.FC<ServiceItemProps> = ({ service, scrollToConta
             ) : (
               /* Services 2-6: High-Res Frame with Brand Geometry */
               <div className="relative w-full max-w-[480px] rounded-3xl overflow-hidden shadow-2xl shadow-slate-300/60 border border-slate-200/90 group">
+                {service.isAiGenerated && (
+                  <AiGeneratedBadge position="top-3 left-3 sm:top-4 sm:left-4" />
+                )}
                 <img
                   src={service.image}
                   alt={service.imageAlt}

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Calendar, MapPin } from 'lucide-react'
 import { useScrollAnimation } from '../../hooks/useScrollAnimation'
+import { AiGeneratedBadge } from '../common/AiGeneratedBadge'
 
 export const AboutCompany: React.FC = () => {
   const { ref, isVisible } = useScrollAnimation()
@@ -13,6 +14,7 @@ export const AboutCompany: React.FC = () => {
           {/* Left Column: Photo Collage (Villa, Fuses, Cable Trays) */}
           <div className="lg:col-span-6 relative">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-slate-200/80 border border-slate-200/90 group">
+              <AiGeneratedBadge position="top-3 left-3 sm:top-4 sm:left-4" />
               <img
                 src="/about/about_collage_full.jpg"
                 alt="ADAMAS moderne Elektrotechnik und zukunftsfähige Installationen"

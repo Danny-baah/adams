@@ -2,6 +2,7 @@ import React from 'react'
 import { ArrowRight, Zap, Home, Shield, Lightbulb, Car, Wrench } from 'lucide-react'
 import { AppPage } from '../hero/HeroNavigation'
 import { useScrollAnimation } from '../../hooks/useScrollAnimation'
+import { AiGeneratedBadge } from '../common/AiGeneratedBadge'
 
 interface ServicesSectionProps {
   onNavigate?: (page: AppPage) => void
@@ -118,6 +119,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onNavigate }) 
               >
                 {/* Image Container with Yellow Corner Diagonal Accent */}
                 <div className="relative h-52 sm:h-56 overflow-hidden bg-slate-100">
+                  <AiGeneratedBadge position="top-2.5 left-2.5 sm:top-3 sm:left-3" />
                   <img
                     src={s.image}
                     alt={s.title}
