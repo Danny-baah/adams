@@ -181,6 +181,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             >
               AGB
             </a>
+            <span className="text-white/30 hidden sm:inline">|</span>
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new CustomEvent('openCookieSettings'))}
+              className="hover:text-white transition-colors cursor-pointer"
+            >
+              Cookie-Einstellungen
+            </button>
           </div>
 
           {/* Webdesign by EmanCopys */}

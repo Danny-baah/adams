@@ -25,6 +25,7 @@ import { ContactMapSection } from './components/contact/ContactMapSection'
 
 // Legal & Compliance Pages
 import { LegalPage } from './components/legal/LegalPage'
+import { CookieBanner } from './components/common/CookieBanner'
 
 const getInitialPage = (): AppPage => {
   if (typeof window === 'undefined') return 'home'
@@ -291,6 +292,9 @@ export const App: React.FC = () => {
           onNavigate={handleNavigate}
         />
       )}
+
+      {/* Global GDPR / TDDDG Cookie Consent Banner */}
+      <CookieBanner onNavigate={handleNavigate} />
     </main>
   )
 }
