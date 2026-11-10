@@ -105,7 +105,7 @@ export const CookieBanner: React.FC<CookieBannerProps> = ({ onNavigate }) => {
     <aside
       role="region"
       aria-label="Cookie- und Privatsphäre-Einstellungen"
-      className="fixed bottom-4 left-4 right-4 sm:left-6 sm:right-auto sm:max-w-lg z-50 bg-[#041633]/95 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl shadow-black/60 text-white p-5 sm:p-6 animate-in fade-in slide-in-from-bottom-4 duration-300 pointer-events-auto"
+      className="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:max-w-lg z-50 bg-[#041633]/95 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl shadow-black/60 text-white p-5 sm:p-6 animate-in fade-in slide-in-from-bottom-4 duration-300 pointer-events-auto"
     >
       {/* Header */}
       <div className="flex items-start gap-3.5 mb-3">
