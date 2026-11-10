@@ -13,12 +13,12 @@ interface AiGeneratedBadgeProps {
 export const AiGeneratedBadge: React.FC<AiGeneratedBadgeProps> = ({
   className = '',
   position = 'top-3 left-3',
-  text = 'Ai-generated',
+  text = 'KI-generiert',
 }) => {
   return (
     <div
       className={`absolute ${position} z-10 inline-flex items-center px-2 py-0.5 rounded-md bg-black/55 backdrop-blur-md border border-white/15 text-white/90 text-[10.5px] sm:text-[11px] font-medium tracking-wide shadow-sm pointer-events-none select-none transition-opacity duration-200 ${className}`}
-      aria-label="AI-generated visual"
+      aria-label="KI-generiertes Bild"
     >
       {text}
     </div>
