@@ -33,10 +33,10 @@ export const ContactCtaSection: React.FC<ContactCtaSectionProps> = ({ onNavigate
 
   return (
     <section ref={ref} id="kontakt" className="relative py-14 sm:py-18 lg:py-20 bg-[#070B12] text-white overflow-hidden border-t border-slate-800/80">
-      {/* Background Twilight Villa Image with Clean Dark Gradient (NO red/yellow corner wedges) */}
+      {/* Background Twilight Villa Image with Clean Dark Gradient */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/frames/f_0000.webp"
+          src="/assets/hero_villa_smart.webp"
           alt="ADAMAS Elektrotechnik"
           className="w-full h-full object-cover opacity-25 filter brightness-70 contrast-125"
         />
