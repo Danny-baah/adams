@@ -109,7 +109,7 @@ export const CookieBanner: React.FC<CookieBannerProps> = ({ onNavigate }) => {
         <aside
           role="complementary"
           aria-label="Cookie-Einstellungen öffnen"
-          className="fixed bottom-4 left-4 sm:bottom-5 sm:left-5 z-40 group"
+          className="fixed bottom-4 right-4 sm:bottom-5 sm:right-5 z-40 group"
         >
           <button
             type="button"
@@ -131,12 +131,12 @@ export const CookieBanner: React.FC<CookieBannerProps> = ({ onNavigate }) => {
         </aside>
       )}
 
-      {/* Main Cookie Banner Modal on the Bottom Left: Cute, Compact & Non-Intrusive */}
+      {/* Main Cookie Banner Modal on the Bottom Right: Cute, Compact & Non-Intrusive */}
       {isVisible && (
         <aside
           role="region"
           aria-label="Cookie- und Privatsphäre-Einstellungen"
-          className="fixed bottom-3 left-3 sm:bottom-5 sm:left-5 z-50 w-[calc(100%-1.5rem)] sm:w-[370px] max-w-[380px] bg-[#041633]/95 backdrop-blur-xl border border-white/15 rounded-2xl shadow-2xl shadow-black/70 text-white p-4 sm:p-4.5 animate-in fade-in slide-in-from-bottom-4 duration-300 pointer-events-auto"
+          className="fixed bottom-3 right-3 sm:bottom-5 sm:right-5 z-50 w-[calc(100%-1.5rem)] sm:w-[370px] max-w-[380px] bg-[#041633]/95 backdrop-blur-xl border border-white/15 rounded-2xl shadow-2xl shadow-black/70 text-white p-4 sm:p-4.5 animate-in fade-in slide-in-from-bottom-4 duration-300 pointer-events-auto"
         >
           {/* Header */}
           <div className="flex items-center gap-2.5 mb-2.5">
