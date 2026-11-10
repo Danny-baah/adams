@@ -6,7 +6,10 @@ export const AboutHero: React.FC = () => {
   const { ref, isVisible } = useScrollAnimation()
 
   return (
-    <section ref={ref} className="relative pt-32 pb-24 sm:pt-40 sm:pb-32 bg-[#011429] text-white overflow-hidden">
+    <section
+      ref={ref}
+      className="relative pt-24 pb-14 sm:pt-32 sm:pb-18 lg:pt-36 lg:pb-22 min-h-[440px] sm:min-h-[480px] lg:min-h-[520px] flex items-center bg-[#011429] text-white overflow-hidden"
+    >
       {/* Background Graphic Photo: Clean Switchboard Installation from elektro-adamas.de (Zero Faces, Zero Ghost Text) */}
       <div className="absolute inset-0 z-0">
         <img
@@ -20,12 +23,12 @@ export const AboutHero: React.FC = () => {
         <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#011429] to-transparent pointer-events-none" />
       </div>
 
-      {/* Hero Content */}
-      <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 z-20">
+      {/* Hero Content - All texts and badges visible at once */}
+      <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 z-20 w-full">
         <div className="max-w-2xl">
           
           {/* Eyebrow */}
-          <div className="flex items-center gap-3 mb-4">
+          <div className="flex items-center gap-3 mb-3 sm:mb-4">
             <span className="w-8 h-1 bg-[#F3A81D] rounded-full" />
             <span className="text-xs sm:text-sm font-bold tracking-[0.22em] text-slate-200 uppercase">
               ÜBER ADAMAS
@@ -33,7 +36,7 @@ export const AboutHero: React.FC = () => {
           </div>
 
           {/* Headline - Fades in */}
-          <h1 className={`anim-fade-in ${isVisible ? 'is-visible' : ''} text-4xl sm:text-5xl lg:text-[58px] font-extrabold text-white tracking-tight leading-[1.12] mb-5`}>
+          <h1 className={`anim-fade-in ${isVisible ? 'is-visible' : ''} text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-extrabold text-white tracking-tight leading-[1.14] sm:leading-[1.12] mb-3 sm:mb-4`}>
             Elektrotechnik mit<br />
             Erfahrung. Lösungen<br />
             <span className="text-[#F3A81D] drop-shadow-[0_2px_14px_rgba(243,168,29,0.35)]">
@@ -42,18 +45,18 @@ export const AboutHero: React.FC = () => {
           </h1>
 
           {/* Subtitle */}
-          <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed mb-8 max-w-xl">
+          <p className="text-sm sm:text-base md:text-lg text-slate-300 font-normal leading-relaxed mb-6 sm:mb-7 max-w-xl">
             Seit 1998 steht ADAMAS Elektrotechnik für hochwertige Elektroinstallationen und durchdachte technische Lösungen.
           </p>
 
           {/* Badges Row - Left badge slides left, Right badge slides right */}
-          <div className="flex flex-wrap items-center gap-3.5">
-            <div className={`anim-slide-left ${isVisible ? 'is-visible' : ''} inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#D81E26] text-white font-bold text-sm shadow-lg shadow-red-950/40`}>
+          <div className="flex flex-wrap items-center gap-3 sm:gap-3.5">
+            <div className={`anim-slide-left ${isVisible ? 'is-visible' : ''} inline-flex items-center gap-2 px-4.5 py-2 sm:px-5 sm:py-2.5 rounded-full bg-[#D81E26] text-white font-bold text-xs sm:text-sm shadow-lg shadow-red-950/40`}>
               <Calendar className="w-4 h-4" />
               <span>Seit 1998</span>
             </div>
 
-            <div className={`anim-slide-right ${isVisible ? 'is-visible' : ''} delay-150 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0E1E38]/80 hover:bg-[#0E1E38] border border-white/25 text-white font-medium text-sm backdrop-blur-md`}>
+            <div className={`anim-slide-right ${isVisible ? 'is-visible' : ''} delay-150 inline-flex items-center gap-2 px-4.5 py-2 sm:px-5 sm:py-2.5 rounded-full bg-[#0E1E38]/80 hover:bg-[#0E1E38] border border-white/25 text-white font-medium text-xs sm:text-sm backdrop-blur-md`}>
               <MapPin className="w-4 h-4 text-white" />
               <span>Sitz in Leverkusen</span>
             </div>

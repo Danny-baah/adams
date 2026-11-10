@@ -40,6 +40,8 @@ const SLIDE_DURATION_MS = 6000
  * Features 2 rotating high-definition visuals:
  * 1. Smart Villa at dusk with wallbox, CCTV and architectural illumination (from user reference)
  * 2. High-tech CCTV security camera (dome architectural installation)
+ * 
+ * Optimized so all texts and CTA buttons are 100% visible at once without scrolling.
  */
 export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -63,7 +65,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
 
   return (
     <section
-      className="relative w-full min-h-[100svh] lg:h-screen lg:min-h-[720px] lg:max-h-[980px] bg-[#070B12] text-white overflow-hidden flex flex-col justify-between select-none group/hero"
+      className="relative w-full h-[100svh] min-h-[560px] max-h-[100svh] lg:h-screen lg:max-h-screen bg-[#070B12] text-white overflow-hidden flex flex-col justify-center select-none group/hero"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       aria-label="ADAMAS Elektrotechnik Startbereich"
@@ -102,7 +104,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
 
       {/* Ambient Vignette & Bottom Section Blend */}
       <div className="absolute inset-0 cinematic-vignette pointer-events-none z-10" />
-      <div className="absolute inset-x-0 bottom-0 h-28 sm:h-36 cinematic-bottom-gradient pointer-events-none z-10" />
+      <div className="absolute inset-x-0 bottom-0 h-24 sm:h-32 cinematic-bottom-gradient pointer-events-none z-10" />
 
       {/* Desktop Next/Prev Arrow Controls (Subtle, appear on hero hover) */}
       <div className="hidden lg:flex absolute inset-y-0 right-8 items-center gap-2 z-20 pointer-events-auto opacity-0 group-hover/hero:opacity-100 transition-opacity duration-300">
@@ -127,14 +129,11 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
       {/* Fixed / Floating Top Navigation */}
       <HeroNavigation currentPage="home" onNavigate={onNavigate} />
 
-      {/* Top Navbar Spacer: Guarantees text is comfortably below fixed navbar */}
-      <div className="h-20 sm:h-24 md:h-28 flex-shrink-0" />
-
-      {/* Main Hero Content: Centered vertically */}
-      <div className="relative z-20 max-w-7xl w-full mx-auto px-6 sm:px-8 lg:px-12 my-auto py-8 sm:py-12 flex flex-col justify-center items-start">
+      {/* Main Hero Content: Comfortably centered so all text and CTA buttons are visible at once */}
+      <div className="relative z-20 max-w-7xl w-full mx-auto px-6 sm:px-8 lg:px-12 pt-20 sm:pt-24 lg:pt-26 pb-8 sm:pb-12 flex flex-col justify-center items-start">
         <div className="w-full max-w-2xl text-left flex flex-col justify-center">
           {/* Eyebrow */}
-          <div className="flex items-center gap-2.5 mb-3 sm:mb-3.5">
+          <div className="flex items-center gap-2.5 mb-2.5 sm:mb-3">
             <span className="inline-block w-2 h-2 rounded-full bg-[#F3A81D] animate-pulse" />
             <span className="text-[11px] sm:text-xs md:text-sm font-semibold tracking-[0.22em] text-slate-300 uppercase">
               ELEKTROTECHNIK &middot; SMART HOME &middot; SICHERHEIT
@@ -142,7 +141,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           </div>
 
           {/* Main Headline - Entrance Fade-In */}
-          <h1 className="anim-fade-in is-visible text-3xl sm:text-4xl md:text-5xl lg:text-[54px] xl:text-[60px] font-extrabold text-white leading-[1.14] sm:leading-[1.1] tracking-tight mb-4 sm:mb-5">
+          <h1 className="anim-fade-in is-visible text-3xl sm:text-4xl md:text-4xl lg:text-[46px] xl:text-[52px] font-extrabold text-white leading-[1.14] sm:leading-[1.12] tracking-tight mb-3 sm:mb-4">
             Intelligente<br />
             Elektrotechnik<br />
             <span className="text-[#F3A81D] drop-shadow-[0_2px_16px_rgba(243,168,29,0.4)]">
@@ -151,17 +150,14 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           </h1>
 
           {/* Supporting Text */}
-          <p className="text-sm sm:text-base md:text-lg text-slate-200/90 font-normal leading-relaxed mb-7 sm:mb-8 max-w-xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+          <p className="text-sm sm:text-base md:text-lg text-slate-200/90 font-normal leading-relaxed mb-5 sm:mb-7 max-w-xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
             Moderne Elektroinstallationen, sichere Gebäudetechnik und smarte Lösungen &ndash; professionell, zuverlässig und zukunftssicher.
           </p>
 
-          {/* CTA Buttons */}
+          {/* CTA Buttons - Guaranteed visible at once */}
           <HeroButtons onNavigate={onNavigate} />
         </div>
       </div>
-
-      {/* Bottom Spacer to ensure balanced vertical centering now that the bottom pills are removed */}
-      <div className="h-10 sm:h-16 flex-shrink-0" />
     </section>
   )
 }
