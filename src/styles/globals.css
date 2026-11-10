@@ -143,5 +143,56 @@
     transform: none !important;
     transition: none !important;
   }
+  .animate-ken-burns-1,
+  .animate-ken-burns-2,
+  .animate-ken-burns-3 {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* ==========================================================================
+   Ken Burns Cinematic Pan & Zoom Animations for Hero Slideshow
+   ========================================================================== */
+@keyframes kenburns-zoom-in {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  100% {
+    transform: scale(1.08) translate(-1%, -0.8%);
+  }
+}
+
+@keyframes kenburns-pan-right {
+  0% {
+    transform: scale(1.02) translate(-1%, 0);
+  }
+  100% {
+    transform: scale(1.09) translate(1%, -0.5%);
+  }
+}
+
+@keyframes kenburns-pan-down {
+  0% {
+    transform: scale(1.08) translate(0.5%, -1%);
+  }
+  100% {
+    transform: scale(1.02) translate(-0.5%, 0.5%);
+  }
+}
+
+.animate-ken-burns-1 {
+  animation: kenburns-zoom-in 7.5s cubic-bezier(0.25, 1, 0.5, 1) infinite alternate;
+  will-change: transform;
+}
+
+.animate-ken-burns-2 {
+  animation: kenburns-pan-right 7.5s cubic-bezier(0.25, 1, 0.5, 1) infinite alternate;
+  will-change: transform;
+}
+
+.animate-ken-burns-3 {
+  animation: kenburns-pan-down 7.5s cubic-bezier(0.25, 1, 0.5, 1) infinite alternate;
+  will-change: transform;
 }
 
