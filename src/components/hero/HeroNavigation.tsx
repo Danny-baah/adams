@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { ArrowRight, Menu, X } from 'lucide-react'
 
 export type AppPage =
@@ -21,6 +21,16 @@ export const HeroNavigation: React.FC<HeroNavigationProps> = ({
   onNavigate,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 40)
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const handleLinkClick = (
     e: React.MouseEvent,
@@ -53,16 +63,7 @@ export const HeroNavigation: React.FC<HeroNavigationProps> = ({
   const isAbout = currentPage === 'about'
   const isServices = currentPage === 'services'
   const isContact = currentPage === 'contact'
-  const isImpressum = currentPage === 'impressum'
-  const isDatenschutz = currentPage === 'datenschutz'
-  const isAgb = currentPage === 'agb'
-  const isDarkBar =
-    isAbout ||
-    isServices ||
-    isContact ||
-    isImpressum ||
-    isDatenschutz ||
-    isAgb
+  const isDarkBar = !isHome || isScrolled
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 pointer-events-auto">

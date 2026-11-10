@@ -181,15 +181,12 @@ export const App: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  const skipHero = typeof window !== 'undefined' && window.location.search.includes('nohero=1')
-
   return (
     <main className="relative bg-[#070B12] text-white min-h-screen">
       {currentPage === 'home' && (
         <>
-          {/* 1. Cinematic Scroll-Driven Hero */}
-          {!skipHero && <Hero onNavigate={handleNavigate} />}
-          {skipHero && <HeroNavigation currentPage="home" onNavigate={handleNavigate} />}
+          {/* 1. Homepage Hero Section */}
+          <Hero onNavigate={handleNavigate} />
 
           {/* 2. Über ADAMAS Section (Soft Off-White #F8FAFC) */}
           <AboutSection onNavigate={handleNavigate} />
