@@ -27,13 +27,16 @@ export const ServicesHero: React.FC<ServicesHeroProps> = ({ onNavigate }) => {
 
   return (
     <section ref={ref} className="relative pt-32 pb-24 sm:pt-40 sm:pb-32 bg-[#011429] text-white overflow-hidden">
-      {/* Background Graphic Photo with High-Res German Electrical Installation (FULL WIDTH, Zero Humans, Zero Faces) */}
+      {/* Background Graphic Photo with High-Res Architectural Exterior Lighting (FULL WIDTH, Zero Humans, Meaningful Craftsmanship) */}
       <div className="absolute inset-0 z-0">
-        <img
-          src="/services/services_hero_no_humans.jpg"
-          alt="ADAMAS Elektrotechnik Unsere Leistungen"
-          className="w-full h-full object-cover object-[center_center] filter brightness-90"
-        />
+        <picture>
+          <source srcSet="/services/services_hero_meaningful.webp" type="image/webp" />
+          <img
+            src="/services/services_hero_meaningful.jpg"
+            alt="ADAMAS Elektrotechnik Moderne Architekturbeleuchtung und Gebäudetechnik"
+            className="w-full h-full object-cover object-[center_center] filter brightness-95"
+          />
+        </picture>
         {/* Left-to-Right subtle dark gradient overlay for text legibility while keeping photo full width */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#011429]/95 via-[#011429]/75 to-[#011429]/20 w-full sm:w-4/5 lg:w-3/5" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#011429]/80 via-transparent to-black/20" />

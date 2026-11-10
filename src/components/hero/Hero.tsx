@@ -11,39 +11,24 @@ interface HeroSlide {
   id: string
   image: string
   alt: string
-  label: string
-  tag: string
   kenBurnsClass: string
   objectPosition: string
 }
 
 const HERO_SLIDES: HeroSlide[] = [
   {
-    id: 'wallbox',
-    image: '/hero/hero_slide_wallbox.webp',
-    alt: 'ADAMAS E-Mobilität und Wallbox Ladelösung mit Elektrofahrzeug im Carport',
-    label: 'Wallbox & E-Auto',
-    tag: 'E-Mobilität & Wallbox-Ladesysteme',
+    id: 'smart-villa',
+    image: '/assets/hero_villa_smart.webp',
+    alt: 'ADAMAS Intelligente Elektrotechnik, Smart Home, Wallbox und Videoüberwachung',
     kenBurnsClass: 'animate-ken-burns-1',
-    objectPosition: 'object-[72%_center] sm:object-[68%_center] lg:object-center',
+    objectPosition: 'object-[75%_center] sm:object-[68%_center] lg:object-center',
   },
   {
-    id: 'cctv',
+    id: 'cctv-security',
     image: '/hero/hero_slide_cctv.webp',
     alt: 'ADAMAS Moderne Videoüberwachung und CCTV Sicherheitstechnik',
-    label: 'CCTV & Sicherheit',
-    tag: 'Sicherheitstechnik & Videoüberwachung',
     kenBurnsClass: 'animate-ken-burns-2',
     objectPosition: 'object-[60%_center] sm:object-[55%_center] lg:object-center',
-  },
-  {
-    id: 'lighting',
-    image: '/hero/hero_slide_lighting.webp',
-    alt: 'ADAMAS Intelligente Innenbeleuchtung und Smart Home Raumlicht',
-    label: 'Smarte Beleuchtung',
-    tag: 'Lichtdesign & Smart-Home-Steuerung',
-    kenBurnsClass: 'animate-ken-burns-3',
-    objectPosition: 'object-[78%_center] sm:object-[68%_center] lg:object-center',
   },
 ]
 
@@ -52,24 +37,12 @@ const SLIDE_DURATION_MS = 6000
 
 /**
  * Standard, modern homepage hero section with Ken Burns slideshow.
- * Features 3 rotating high-definition visuals:
- * 1. Wallbox with electric car (full charging system, zero humans)
+ * Features 2 rotating high-definition visuals:
+ * 1. Smart Villa at dusk with wallbox, CCTV and architectural illumination (from user reference)
  * 2. High-tech CCTV security camera (dome architectural installation)
- * 3. Modern living room with ambient smart lighting (zero humans)
  */
 export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
-  const [currentSlide, setCurrentSlide] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const param = new URLSearchParams(window.location.search).get('slide')
-      if (param !== null) {
-        const parsed = parseInt(param, 10)
-        if (!isNaN(parsed) && parsed >= 0 && parsed < HERO_SLIDES.length) {
-          return parsed
-        }
-      }
-    }
-    return 0
-  })
+  const [currentSlide, setCurrentSlide] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
 
   const nextSlide = useCallback(() => {
@@ -80,7 +53,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
     setCurrentSlide((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length)
   }, [])
 
-  // Automatic slideshow rotation with 6s duration
+  // Automatic slideshow rotation every 6 seconds
   useEffect(() => {
     if (isPaused) return
 
@@ -129,7 +102,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
 
       {/* Ambient Vignette & Bottom Section Blend */}
       <div className="absolute inset-0 cinematic-vignette pointer-events-none z-10" />
-      <div className="absolute inset-x-0 bottom-0 h-32 cinematic-bottom-gradient pointer-events-none z-10" />
+      <div className="absolute inset-x-0 bottom-0 h-28 sm:h-36 cinematic-bottom-gradient pointer-events-none z-10" />
 
       {/* Desktop Next/Prev Arrow Controls (Subtle, appear on hero hover) */}
       <div className="hidden lg:flex absolute inset-y-0 right-8 items-center gap-2 z-20 pointer-events-auto opacity-0 group-hover/hero:opacity-100 transition-opacity duration-300">
@@ -155,19 +128,16 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
       <HeroNavigation currentPage="home" onNavigate={onNavigate} />
 
       {/* Top Navbar Spacer: Guarantees text is comfortably below fixed navbar */}
-      <div className="h-24 sm:h-28 md:h-32 flex-shrink-0" />
+      <div className="h-20 sm:h-24 md:h-28 flex-shrink-0" />
 
       {/* Main Hero Content: Centered vertically */}
       <div className="relative z-20 max-w-7xl w-full mx-auto px-6 sm:px-8 lg:px-12 my-auto py-8 sm:py-12 flex flex-col justify-center items-start">
         <div className="w-full max-w-2xl text-left flex flex-col justify-center">
-          {/* Dynamic Eyebrow & Slide Badge */}
-          <div className="flex flex-wrap items-center gap-2.5 mb-3 sm:mb-3.5">
+          {/* Eyebrow */}
+          <div className="flex items-center gap-2.5 mb-3 sm:mb-3.5">
             <span className="inline-block w-2 h-2 rounded-full bg-[#F3A81D] animate-pulse" />
             <span className="text-[11px] sm:text-xs md:text-sm font-semibold tracking-[0.22em] text-slate-300 uppercase">
               ELEKTROTECHNIK &middot; SMART HOME &middot; SICHERHEIT
-            </span>
-            <span className="hidden sm:inline-block text-xs font-mono text-slate-400/80 bg-white/5 border border-white/10 px-2 py-0.5 rounded-md backdrop-blur-sm">
-              0{currentSlide + 1} &middot; {HERO_SLIDES[currentSlide].tag}
             </span>
           </div>
 
@@ -190,51 +160,8 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         </div>
       </div>
 
-      {/* Bottom Status Bar: Interactive Slide Navigation Pills with Animated Progress */}
-      <div className="relative z-20 max-w-7xl w-full mx-auto px-6 sm:px-8 lg:px-12 pb-6 sm:pb-8 flex items-center justify-between">
-        {/* Subtle scroll cue hint */}
-        <div className="hidden lg:flex items-center gap-2 text-xs text-slate-400 font-medium">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#F3A81D]" />
-          <span>Qualität &amp; Handwerk seit 1998</span>
-        </div>
-
-        {/* Ken Burns Slide Selector Pills with Progress Bars - Positioned to stay clear of right-aligned cookie banner */}
-        <div className="flex items-center gap-2 sm:gap-2.5 bg-black/60 backdrop-blur-md p-1.5 rounded-full border border-white/10 shadow-2xl mx-auto lg:mr-auto lg:ml-10 xl:mx-auto">
-          {HERO_SLIDES.map((slide, index) => {
-            const isActive = index === currentSlide
-            return (
-              <button
-                key={slide.id}
-                type="button"
-                onClick={() => setCurrentSlide(index)}
-                className={`relative overflow-hidden inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium transition-all duration-300 px-2.5 sm:px-3.5 py-1.5 rounded-full cursor-pointer ${
-                  isActive
-                    ? 'bg-[#D81E26] text-white shadow-md'
-                    : 'text-slate-300 hover:text-white hover:bg-white/10'
-                }`}
-                aria-label={`Zum Slide ${slide.label} wechseln`}
-              >
-                {/* Active Slide 6-Second Progress Fill Bar */}
-                {isActive && (
-                  <span
-                    key={`progress-${currentSlide}`}
-                    className={`absolute bottom-0 left-0 h-[2px] bg-white/70 animate-slide-progress ${
-                      isPaused ? 'is-paused' : ''
-                    }`}
-                  />
-                )}
-                <span
-                  className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${
-                    isActive ? 'bg-white' : 'bg-slate-400'
-                  }`}
-                />
-                <span className="font-mono text-[11px] opacity-80">0{index + 1}</span>
-                <span className="hidden md:inline font-semibold">{slide.label}</span>
-              </button>
-            )
-          })}
-        </div>
-      </div>
+      {/* Bottom Spacer to ensure balanced vertical centering now that the bottom pills are removed */}
+      <div className="h-10 sm:h-16 flex-shrink-0" />
     </section>
   )
 }

@@ -458,7 +458,7 @@ export const DatenschutzView: React.FC<DatenschutzViewProps> = () => {
             Zur Nutzung der Funktionen von Google Maps ist es notwendig, Ihre IP-Adresse zu speichern. Diese Informationen werden in der Regel an Server von Google übertragen.
           </p>
           <p className="text-xs sm:text-sm text-slate-500">
-            Die Nutzung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO.
+            Die Nutzung von Google Maps erfolgt über eine datenschutzfreundliche 2-Klick-Lösung ausschließlich auf Grundlage Ihrer ausdrücklichen Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG. Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft über das permanente Cookie-Symbol unten links auf unserer Webseite anpassen oder widerrufen.
           </p>
           <div className="pt-2">
             <a
