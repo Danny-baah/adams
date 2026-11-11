@@ -34,3 +34,7 @@ pnpm-debug.log*
 
 # Vercel
 .vercel
+
+# Deployment scripts with server credentials
+scripts/deploy_sftp.py
+
