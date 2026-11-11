@@ -32,20 +32,20 @@ const HERO_SLIDES: HeroSlide[] = [
   },
 ]
 
-// Interval between 5 and 7 seconds (6 seconds per slide)
+// Automatic continuous rotation strictly every 6 seconds in an infinite loop
 const SLIDE_DURATION_MS = 6000
 
 /**
  * Standard, modern homepage hero section with Ken Burns slideshow.
  * Features 2 rotating high-definition visuals:
- * 1. Smart Villa at dusk with wallbox, CCTV and architectural illumination (from user reference)
+ * 1. Smart Villa at dusk with wallbox, CCTV and architectural illumination
  * 2. High-tech CCTV security camera (dome architectural installation)
  * 
- * Optimized so all texts and CTA buttons are 100% visible at once without scrolling.
+ * Cycles continuously every 6 seconds in an infinite loop.
+ * Heading distance has generous, elegant vertical spacing between lines.
  */
 export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   const [currentSlide, setCurrentSlide] = useState(0)
-  const [isPaused, setIsPaused] = useState(false)
 
   const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length)
@@ -55,22 +55,21 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
     setCurrentSlide((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length)
   }, [])
 
-  // Automatic slideshow rotation every 6 seconds
+  // Continuous infinite loop rotation every 6 seconds (resets timer if manual arrow clicked)
   useEffect(() => {
-    if (isPaused) return
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length)
+    }, SLIDE_DURATION_MS)
 
-    const interval = setInterval(nextSlide, SLIDE_DURATION_MS)
-    return () => clearInterval(interval)
-  }, [isPaused, nextSlide, currentSlide])
+    return () => clearInterval(timer)
+  }, [currentSlide])
 
   return (
     <section
       className="relative w-full h-[100svh] min-h-[560px] max-h-[100svh] lg:h-screen lg:max-h-screen bg-[#070B12] text-white overflow-hidden flex flex-col justify-center select-none group/hero"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
       aria-label="ADAMAS Elektrotechnik Startbereich"
     >
-      {/* Background Slideshow with Ken Burns Pan & Zoom */}
+      {/* Background Slideshow with Ken Burns Pan & Zoom (Both images eager-loaded for seamless instant crossfade) */}
       <div className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
         {HERO_SLIDES.map((slide, index) => {
           const isActive = index === currentSlide
@@ -78,7 +77,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             <div
               key={slide.id}
               className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
-                isActive ? 'opacity-100' : 'opacity-0'
+                isActive ? 'opacity-100 z-1' : 'opacity-0 z-0'
               }`}
             >
               <img
@@ -87,7 +86,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 className={`w-full h-full object-cover ${slide.objectPosition} ${
                   isActive ? slide.kenBurnsClass : ''
                 }`}
-                loading={index === 0 ? 'eager' : 'lazy'}
+                loading="eager"
               />
             </div>
           )
@@ -133,24 +132,24 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
       <div className="relative z-20 max-w-7xl w-full mx-auto px-6 sm:px-8 lg:px-12 pt-20 sm:pt-24 lg:pt-26 pb-8 sm:pb-12 flex flex-col justify-center items-start">
         <div className="w-full max-w-2xl text-left flex flex-col justify-center">
           {/* Eyebrow */}
-          <div className="flex items-center gap-2.5 mb-2.5 sm:mb-3">
+          <div className="flex items-center gap-2.5 mb-3 sm:mb-4">
             <span className="inline-block w-2 h-2 rounded-full bg-[#F3A81D] animate-pulse" />
             <span className="text-[11px] sm:text-xs md:text-sm font-semibold tracking-[0.22em] text-slate-300 uppercase">
               ELEKTROTECHNIK &middot; SMART HOME &middot; SICHERHEIT
             </span>
           </div>
 
-          {/* Main Headline - Entrance Fade-In */}
-          <h1 className="anim-fade-in is-visible text-3xl sm:text-4xl md:text-4xl lg:text-[46px] xl:text-[52px] font-extrabold text-white leading-[1.14] sm:leading-[1.12] tracking-tight mb-3 sm:mb-4">
-            Intelligente<br />
-            Elektrotechnik<br />
-            <span className="text-[#F3A81D] drop-shadow-[0_2px_16px_rgba(243,168,29,0.4)]">
+          {/* Main Headline with generous, spacious distance between lines */}
+          <h1 className="anim-fade-in is-visible text-3xl sm:text-4xl md:text-4xl lg:text-[46px] xl:text-[52px] font-extrabold text-white tracking-tight mb-5 sm:mb-6 leading-tight">
+            <span className="block mb-2 sm:mb-2.5">Intelligente</span>
+            <span className="block mb-2 sm:mb-2.5">Elektrotechnik</span>
+            <span className="block text-[#F3A81D] drop-shadow-[0_2px_16px_rgba(243,168,29,0.4)]">
               für Ihr Zuhause.
             </span>
           </h1>
 
           {/* Supporting Text */}
-          <p className="text-sm sm:text-base md:text-lg text-slate-200/90 font-normal leading-relaxed mb-5 sm:mb-7 max-w-xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+          <p className="text-sm sm:text-base md:text-lg text-slate-200/90 font-normal leading-relaxed mb-6 sm:mb-8 max-w-xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
             Moderne Elektroinstallationen, sichere Gebäudetechnik und smarte Lösungen &ndash; professionell, zuverlässig und zukunftssicher.
           </p>
 
