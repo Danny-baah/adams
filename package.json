@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite --port 5173 --host",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "npm run build && python scripts/deploy_ftp.py"
   },
   "dependencies": {
     "gsap": "^3.12.5",
